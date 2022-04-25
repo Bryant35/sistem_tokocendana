@@ -9,6 +9,11 @@
     <style>
         .nav-item{
             color: black;
+            font-size: 20px;
+        }
+        .dropdown-item{
+            color: black;
+            font-size: 17px;
         }
         .nav-item:hover {
             color: #FF0000;
