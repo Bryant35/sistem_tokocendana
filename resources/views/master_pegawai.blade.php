@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+@include('navbar')
 <body>
     <h1>bryant here</h1>
 </body>
