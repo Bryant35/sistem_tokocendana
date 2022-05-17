@@ -21,12 +21,16 @@
         .clicked:active{
             color: #FF0000;
         }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0; // remove the gap so it doesn't close
+        }
     </style>
 </head>
 <body>
     <div class="mx-5">
-        <nav class="navbar navbar-collapse dark mx-5">
-            <a class="nav-link" href="/"><img src="img\logo_toko_cendana.png" alt="" style="width: 60px; text-align: left;"></a>
+        <nav class="navbar navbar-collapse dark mx-5" style="color: #d8d8d8">
+            <a class="nav-link" href="/home"><img src="img\logo_toko_cendana.png" alt="" style="width: 60px; text-align: left;"></a>
             <li class="nav-item dropdown fw-bold" style="text-decoration: black; list-style: none;">
                 <a class="nav-item text-reset" href="#" id="navbarToko" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: black;">
                 Toko
@@ -62,5 +66,6 @@
             </li>
         </nav>
     </div>
+    <p class="position-absolute bottom-0 start-50 translate-middle-x fw-bold">Cendana Snack</p>
 </body>
 </html>
