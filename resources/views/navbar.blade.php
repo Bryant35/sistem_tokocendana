@@ -28,9 +28,9 @@
     </style>
 </head>
 <body>
-    <div class="mx-5">
-        <nav class="navbar navbar-collapse dark mx-5" style="color: #d8d8d8">
-            <a class="nav-link" href="/home"><img src="img\logo_toko_cendana.png" alt="" style="width: 60px; text-align: left;"></a>
+    {{-- <div class="mx-5" style="background-color: #d8d8d8"> --}}
+        <nav class="navbar navbar-collapse dark" style="background-color: #d8d8d8">
+            <a class="nav-link ms-5" href="/home"><img src="img\logo_toko_cendana.png" alt="" class="ms-5" style="width: 60px; text-align: left;"></a>
             <li class="nav-item dropdown fw-bold" style="text-decoration: black; list-style: none;">
                 <a class="nav-item text-reset" href="#" id="navbarToko" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: black;">
                 Toko
@@ -43,7 +43,7 @@
             </li>
             <li class="nav-item dropdown fw-bold" style="text-decoration: black; list-style: none;">
                 <a class="nav-item text-reset" href="#" id="navbarGudang" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: black;">
-                Gudang
+                    Gudang
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarGudang" style="text-decoration: none;">
                     <li><a class="dropdown-item" href="#">Produk Mentah</a></li>
@@ -53,8 +53,8 @@
             </li>
             <a class="nav-item fw-bold clicked" href="pegawai" style="text-decoration: none;">Pegawai</a>
             <a class="nav-item fw-bold clicked" href="customer" style="text-decoration: none;">Customer</a>
-            <li class="nav-item dropdown fw-bold clicked" style="text-decoration: black; list-style: none; ">
-                <a class="nav-item text-reset" href="#" id="navbarLaporan" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: black;">
+            <li class="nav-item dropdown fw-bold clicked me-5" style="text-decoration: black; list-style: none; ">
+                <a class="nav-item text-reset me-5" href="#" id="navbarLaporan" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: black;">
                 Laporan
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarLaporan" style="text-decoration: none;">
@@ -65,7 +65,7 @@
                 </ul>
             </li>
         </nav>
-    </div>
-    <p class="position-absolute bottom-0 start-50 translate-middle-x fw-bold">Cendana Snack</p>
+    {{-- </div> --}}
+    <p class="position-absolute bottom-0 start-50 translate-middle-x fw-bold" style="font-size: 25px">Cendana Snack</p>
 </body>
 </html>
