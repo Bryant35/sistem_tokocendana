@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Transaksi Penjualan - Toko Cendana</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 </head>
 <body>
     @include('navbar')
@@ -23,7 +24,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($data_penjualan as $listjual)
+                        <?php
+                            $page = 0;
+                            if(isset($_REQUEST['page'])){
+                                $page = $_REQUEST['page'];
+                            }
+                            Log::alert($page);
+                            $table_start = $page * 15;
+                            $table_end = $table_start + 15;
+                        ?>
+                        @foreach(array_slice($data_penjualan, $table_start, $table_end) as $listjual)
                         <tr>
                             <th scope="row">{{$listjual->ID_Customer}}</th>
                             <td>{{$listjual->Nama_Produk}}</td>
@@ -32,6 +42,15 @@
                             <td>{{$listjual->Total_Jual}}</td>
                         </tr>
                         @endforeach
+                        {{-- @for ($i = 0; $i < 15; $i++)
+                        <tr>
+                            <th scope="row">{{$data_penjualan->ID_Customer}}</th>
+                            <td>{{$data_penjualan->Nama_Produk}}</td>
+                            <td>{{$data_penjualan->Harga_Jual}}</td>
+                            <td>{{$data_penjualan->Jumlah_Produk}}</td>
+                            <td>{{$data_penjualan->Total_Jual}}</td>
+                        </tr>
+                        @endfor --}}
                         {{-- <tr>
                             <th scope="row">TJ0000002</th>
                             <td>TR0000002</td>
@@ -61,41 +80,60 @@
                         </div>
                     </div>
                 </div>
+                <div class="row d-flex justify-content-center mt-4">
+                    <div class="col-auto"><button class="btn" id="minus">−</button></div>
+                    <div class="col-auto">
+                        <form action="" method="GET">
+                            <input type="number" class="form-control text-center shadow bg-body" style="width: 100px" min="0" value="0" id="input" name="input" />
+                        </form>
+                    </div>
+                    <div class="col-auto"><button class="btn" id="plus">+</button></div>
+                </div>
             </div>
         </div>
     </div>
+    <script>
+        const minusButton = document.getElementById('minus');
+        const plusButton = document.getElementById('plus');
+        const inputField = document.getElementById('input');
 
-    <?php
-        $q = intval($_GET['q']);
+        minusButton.addEventListener('click', event => {
+            event.preventDefault();
+            if (inputField.value == "0") {
+                document.getElementById("minus").classList.toggle("disabled");
+            }
+            else{
+                const currentValue = Number(inputField.value) || 0;
+                inputField.value = currentValue - 1;
+            }
+        });
 
-        $con = mysqli_connect('localhost','peter','abc123','my_db');
-        if (!$con) {
-        die('Could not connect: ' . mysqli_error($con));
-        }
+        plusButton.addEventListener('click', event => {
+            event.preventDefault();
+            document.getElementById("minus").classList.remove("disabled");
+            const currentValue = Number(inputField.value) || 0;
+            inputField.value = currentValue + 1;
+            //convert the value of the input field to php value
 
-        mysqli_select_db($con,"ajax_demo");
-        $sql="SELECT * FROM user WHERE id = '".$q."'";
-        $result = mysqli_query($con,$sql);
+        });
 
-        echo "<table>
-        <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Age</th>
-        <th>Hometown</th>
-        <th>Job</th>
-        </tr>";
-        while($row = mysqli_fetch_array($result)) {
-        echo "<tr>";
-        echo "<td>" . $row['FirstName'] . "</td>";
-        echo "<td>" . $row['LastName'] . "</td>";
-        echo "<td>" . $row['Age'] . "</td>";
-        echo "<td>" . $row['Hometown'] . "</td>";
-        echo "<td>" . $row['Job'] . "</td>";
-        echo "</tr>";
-        }
-        echo "</table>";
-        mysqli_close($con);s
-    ?>
+        $(document).ready(function() {
+            $('#input').change(function(e) {
+                // e.preventDefault();
+                var page = $('#input').val();
+                $.ajax({
+                    type: "GET",
+                    url: '/transaksijual',
+                    data: $(this).val(),
+                    success: function(data) {
+                        // alert('page ke ' + page);
+                    },
+                    error: function() {
+                        alert('There was some error performing the AJAX call!');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

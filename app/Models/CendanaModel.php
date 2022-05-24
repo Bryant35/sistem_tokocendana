@@ -66,8 +66,7 @@ class CendanaModel extends Model
     public function get_data_penjualan(){
         $cmd = "SELECT T.CUST_ID as `ID_Customer`, P.NAMA_PRODUK as `Nama_Produk`, P.HARGA_PRODUK as `Harga_Jual`, T.JML_PRODUK as `Jumlah_Produk`, T.TOTAL_JUAL as `Total_Jual` ".
                 "FROM TRANSAKSI_JUAL T, PRODUK P, DETAIL_JUAL DJ ".
-                "WHERE T.JUAL_ID = DJ.JUAL_ID AND DJ.PRODUK_ID = P.PRODUK_ID ".
-                "LIMIT 15;";
+                "WHERE T.JUAL_ID = DJ.JUAL_ID AND DJ.PRODUK_ID = P.PRODUK_ID;";
         $res = DB::select($cmd);
         if(isset($res) && count($res) > 0){
             return $res;
