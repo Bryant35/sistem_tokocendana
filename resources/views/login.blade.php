@@ -16,18 +16,19 @@
             <div id="square">
                 <div id="square2" style="margin-top: -12%; margin-left: -10%">
                     <img src="img/logo_toko_cendana.png" alt="" class="img-logo d-print-block">
-                    <form action="" method="POST">
+                    <form action="/checklogin" method="POST">
+                        @csrf
                         <div class="row g-3 mt-5 ms-5">
                             <div class="col-1">
-                              <label for="inputID" class="col-form-label fw-bold">ID</label>
+                                <label for="inputID" class="col-form-label fw-bold">ID</label>
                             </div>
                             <div class="col-9">
-                              <input type="name" name="id" id="inputID" class="form-control" required>
+                                <input type="text" name="idpegawai" id="inputID" class="form-control" required>
                             </div>
                         </div>
                         <div class="row g-3 mt-2 ms-5">
                             <div class="col-1">
-                              <label for="password" class="col-form-label fw-bold">Pass</label>
+                                <label for="password" class="col-form-label fw-bold">Pass</label>
                             </div>
                             <div class="col-9">
                                 <input type="password" name="password" id="password" class="form-control" data-toggle="password" required>

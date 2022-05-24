@@ -4,30 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pegawai - Cendana Snack</title>
-    <style>
-            .block{
-        display: block;
-        width: 100%;
-        border-radius: 10px;
-        background-color: white;
-        color: black;
-        padding: 14px 28px;
-        font-size: 24px;
-        cursor: pointer;
-        text-align: center;
-        margin-top: 17%;
-        }
-        .block:hover {
-            background-color: #ddd;
-            color: black;
-        }
-    </style>
+    <title>Retur - Cendana Snack</title>
+    <link rel="stylesheet" href="{{ asset('css/retur.css') }}">
 </head>
-@include('navbar')
 <body>
-<div class="container">
-        <h1>PEGAWAI</h1>
+    @include('navbar')
+    <div class="container">
+        <h1>Retur Produk</h1>
         <hr>
         <div class="row">
             <div class="col">

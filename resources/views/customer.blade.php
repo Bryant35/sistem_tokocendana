@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pegawai - Cendana Snack</title>
+    <title>Customer - Cendana Snack</title>
     <style>
             .block{
         display: block;
@@ -24,10 +24,10 @@
         }
     </style>
 </head>
-@include('navbar')
 <body>
-<div class="container">
-        <h1>PEGAWAI</h1>
+    @include('navbar')
+    <div class="container">
+        <h1>Customer</h1>
         <hr>
         <div class="row">
             <div class="col">
