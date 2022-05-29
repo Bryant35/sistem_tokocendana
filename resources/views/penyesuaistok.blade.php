@@ -61,7 +61,7 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body" style="height: 500px; background-color: #EBEBEB;">
-                        <button type="button" class="block">Update</button>
+                        <a type="button" href="/updatepenyesuaistok" class="block">Update</a>
                     </div>
                 </div>
             </div>

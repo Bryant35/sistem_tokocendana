@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\CendanaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,9 +23,57 @@ Route::get('/', function () {
 //     return view('landing_page');
 // });
 
-Route::get('/pegawai', function () {
-    return view('master_pegawai');
+// TAB TOKO
+Route::get('/transaksijual', 'App\Http\Controllers\CendanaController@transaksi_penjualan');
+
+Route::get('/konversi', function () {
+    return view('konversi');
 });
+
+Route::get('/insertpembeli', 'App\Http\Controllers\CendanaController@view_insert_transaksi_penjualan');
+// Route::get('/insertpembeli', function () {
+//     return view('insertcustbeli');
+// });
+
+Route::get('/inserttransaksijual', function () {
+    return view('inserttransjual');
+});
+
+Route::get('/updatetransaksijual', function () {
+    return view('updatetransjual');
+});
+
+Route::get('/deletetransaksijual', function () {
+    return view('deletetransjual');
+});
+
+Route::get('/updatepembeli', function () {
+    return view('updatecustbeli');
+});
+
+Route::get('/deletepembeli', function () {
+    return view('deletecustbeli');
+});
+
+Route::get('/detailpenjualan', function () {
+    return view('detailpenjualan');
+});
+
+Route::get('/penyesuaistok', function () {
+    return view('penyesuaistok');
+});
+
+Route::get('/updatepenyesuaistok', function () {
+    return view('update_penyesuaianstok');
+});
+
+Route::get('/updatepenyesuaistokjadi', function () {
+    return view('update_penyesuaianstokjadi');
+});
+
+
+//PEGAWAI
+Route::get('/pegawai', 'App\Http\Controllers\CendanaController@view_pegawai');
 
 Route::get('/insertpegawai', function () {
     return view('insertpegawai');
@@ -41,29 +91,15 @@ Route::get('/deletepegawai', function () {
 //     return view('transaksipenjualan');
 // });
 
-Route::get('/konversi', function () {
-    return view('konversi');
-});
+// Route::get('/transaksijual2', function () {
+//     return view('transaksipenjualan2');
+// });
 
-Route::get('/detailpenjualan', function () {
-    return view('detail_penjualan');
-});
 
-Route::get('/penyesuaistok', function () {
-    return view('penyesuaistok');
-});
 
-Route::get('/updatepenyesuaistok', function () {
-    return view('update_penyesuaianstok');
-});
 
-Route::get('/updatepenyesuaistokjadi', function () {
-    return view('update_penyesuaianstokjadi');
-});
 
-Route::get('/retur', function () {
-    return view('retur');
-});
+Route::get('/retur', 'App\Http\Controllers\CendanaController@view_retur');
 
 Route::get('/customerretur', function () {
     return view('updatecustretur');
@@ -81,9 +117,7 @@ Route::get('/detailretur', function () {
     return view('detailretur');
 });
 
-Route::get('/produkmentah', function () {
-    return view('produkmentah');
-});
+Route::get('/produkmentah', 'App\Http\Controllers\CendanaController@view_produk_mentah');
 
 Route::get('/updateprodukmentah', function () {
     return view('updatementah');
@@ -125,9 +159,7 @@ Route::get('/inserttransaksiretur', function () {
     return view('inserttransretur');
 });
 
-Route::get('/produkjadi', function () {
-    return view('produkjadi');
-});
+Route::get('/produkjadi', 'App\Http\Controllers\CendanaController@view_produk_jadi');
 
 Route::get('/insertprodukjadi', function () {
     return view('insertjadi');
@@ -141,13 +173,8 @@ Route::get('/updateprodukjadi', function () {
     return view('updatejadi');
 });
 
-Route::get('/customer', function () {
-    return view('customer');
-});
 
-Route::get('/customer', function () {
-    return view('customer');
-});
+Route::get('/customer', 'App\Http\Controllers\CendanaController@view_customer');
 
 Route::get('/insertcustomer', function () {
     return view('insertcust');
@@ -157,29 +184,10 @@ Route::get('/updatecustomer', function () {
     return view('updatecust');
 });
 
-Route::get('/insertpembeli', function () {
-    return view('insertcustbeli');
-});
 
-Route::get('/inserttransaksijual', function () {
-    return view('inserttransjual');
-});
 
-Route::get('/updatepembeli', function () {
-    return view('updatecustbeli');
-});
 
-Route::get('/updatetransaksijual', function () {
-    return view('updatetransjual');
-});
 
-Route::get('/deletepembeli', function () {
-    return view('deletecustbeli');
-});
-
-Route::get('/deletetransaksijual', function () {
-    return view('deletetransjual');
-});
 
 //POST
 Route::post('/checklogin','App\Http\Controllers\CendanaController@Login_Page');
@@ -187,4 +195,4 @@ Route::post('/checklogin','App\Http\Controllers\CendanaController@Login_Page');
 
 //GET data
 Route::get('/home','App\Http\Controllers\CendanaController@data_home');
-Route::get('/transaksijual', 'App\Http\Controllers\CendanaController@transaksi_penjualan');
+

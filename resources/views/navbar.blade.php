@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
@@ -19,7 +20,7 @@
             color: #FF0000;
         }
         .clicked:active{
-            color: #FF0000;
+            color: #6e0000;
         }
         .dropdown:hover .dropdown-menu {
             display: block;
@@ -77,6 +78,6 @@
             </li>
         </nav>
     {{-- </div> --}}
-    <p class="position-fixed bottom-0 start-50 translate-middle-x fw-bold" style="font-size: 1vw">Cendana Snack</p>
+    <p class="position-fixed bottom-0 start-50 translate-middle-x fw-bold hover" style="font-size: 1vw; opacity: 50%;">Cendana Snack</p>
 </body>
 </html>

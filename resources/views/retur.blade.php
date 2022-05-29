@@ -13,10 +13,32 @@
         <h1>Retur Produk</h1>
         <hr>
         <div class="row">
-            <div class="col">
+            <div class="col" style="margin-bottom: 15px;">
                 <div class="card">
-                    <div class="card-body" style="height: 500px; background-color: #EBEBEB;">
+                    <div class="card-body" style="background-color: #EBEBEB;">
                         <h5 class="text-center card-title fw-bold">Detail</h5>
+                        <table class="table table-striped table-hover border rounded">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID Retur</th>
+                                    <th scope="col">ID Jual</td>
+                                    <th scope="col">Nama Produk</th>
+                                    <th scope="col">Jumlah Produk</th>
+                                    <th scope="col">Total Retur</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($data_retur as $listretur)
+                                    <tr>
+                                        <th scope="row">{{$listretur->RETUR_ID}}</th>
+                                        <td>{{$listretur->JUAL_ID}}</td>
+                                        <td>{{$listretur->NAMA_PRODUK}}</td>
+                                        <td>{{$listretur->JML_PRODUK}}</td>
+                                        <td>{{$listretur->TOTAL_RETUR}}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

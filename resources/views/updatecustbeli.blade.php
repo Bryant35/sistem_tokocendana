@@ -30,7 +30,6 @@
                         <br>
                         <div class="row">
                             <div class="col col-lg-2"><h5>ID Retur: </h5></div>
-
                         </div>
                         <br>
                         <div class="row">

@@ -33,7 +33,7 @@ class CendanaModel extends Model
     }
 
     //GET_DATA_HOME
-    public function get_data_pegawai(){
+    public function get_count_pegawai(){
         $cmd = "SELECT count(*) as `count_pegawai` ".
                 "FROM PEGAWAI;";
         $res = DB::select($cmd);
@@ -64,9 +64,89 @@ class CendanaModel extends Model
 
     //GET_DATA_PENJUALAN
     public function get_data_penjualan(){
-        $cmd = "SELECT T.CUST_ID as `ID_Customer`, P.NAMA_PRODUK as `Nama_Produk`, P.HARGA_PRODUK as `Harga_Jual`, T.JML_PRODUK as `Jumlah_Produk`, T.TOTAL_JUAL as `Total_Jual` ".
+        $cmd = "SELECT T.CUST_ID as `ID_Customer`, T.JUAL_ID as `ID_Jual`, P.NAMA_PRODUK as `Nama_Produk`, P.HARGA_PRODUK as `Harga_Jual`, T.JML_PRODUK as `Jumlah_Produk`, T.TOTAL_JUAL as `Total_Jual` ".
                 "FROM TRANSAKSI_JUAL T, PRODUK P, DETAIL_JUAL DJ ".
                 "WHERE T.JUAL_ID = DJ.JUAL_ID AND DJ.PRODUK_ID = P.PRODUK_ID;";
+        $res = DB::select($cmd);
+        if(isset($res) && count($res) > 0){
+            return $res;
+        }
+        return null;
+    }
+    public function get_detail_penjualan(){
+        $cmd = "SELECT * FROM DETAIL_JUAL;";
+        $res = DB::select($cmd);
+        if(isset($res) && count($res) > 0){
+            return $res;
+        }
+        return null;
+    }
+
+
+    public function view_insert_transaksi_penjualan(){
+        $cmd = "SELECT * FROM `viewIDJualRetur`";
+        $res = DB::select($cmd);
+        if(isset($res) && count($res) > 0){
+            return $res;
+        }
+        return null;
+    }
+
+    public function id_cust_view(){
+        $cmd = "SELECT * FROM CUSTOMER;";
+        $res = DB::select($cmd);
+        if(isset($res) && count($res) > 0){
+            return $res;
+        }
+        return null;
+    }
+
+
+
+
+    //produk mentah
+    public function get_data_produkmentah(){
+        $cmd = "SELECT * FROM PRODUK_MENTAH;";
+        $res = DB::select($cmd);
+        if(isset($res) && count($res) > 0){
+            return $res;
+        }
+        return null;
+    }
+
+    //produk jadi
+    public function get_data_produkjadi(){
+        $cmd = "SELECT * FROM PRODUK;";
+        $res = DB::select($cmd);
+        if(isset($res) && count($res) > 0){
+            return $res;
+        }
+        return null;
+    }
+
+    //retur
+    public function get_data_retur(){
+        $cmd = "SELECT * FROM TRANSAKSI_RETUR;";
+        $res = DB::select($cmd);
+        if(isset($res) && count($res) > 0){
+            return $res;
+        }
+        return null;
+    }
+
+    //pegawai
+    public function get_data_pegawai(){
+        $cmd = "SELECT * FROM PEGAWAI;";
+        $res = DB::select($cmd);
+        if(isset($res) && count($res) > 0){
+            return $res;
+        }
+        return null;
+    }
+
+    //CUSTOMER
+    public function get_data_customer(){
+        $cmd = "SELECT * FROM CUSTOMER;";
         $res = DB::select($cmd);
         if(isset($res) && count($res) > 0){
             return $res;
