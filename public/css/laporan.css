@@ -1,11 +1,11 @@
 .rectangle{
-    height: 550px;
+    height: auto;
     width: 1240px;
     background-color: #EBEBEB;
-    display:block;
     margin-top: 10px;
-    margin-left:auto;
-    margin-right:auto;
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin-bottom: 50px;
 }
 
 span a{

@@ -439,4 +439,34 @@ class CendanaController extends Controller
         $insert_konversi = $user->insert_konversi($id_produk_mentah, $qtymentah, $id_peg, $id_produk_konversi, $qtyjadi);
         return redirect('/konversi');
     }
+
+
+
+    //LAPORRAN
+    public function laporan_konversi_stok(){
+        $user = new CendanaModel;
+        $konversi = $user->data_konversi2();
+        return view('laporankonversistok', compact(['konversi']));
+    }
+    public function laporan_retur_produk(){
+        $user = new CendanaModel;
+        $retur = $user->data_retur();
+        return view('laporan_returproduk', compact(['retur']));
+    }
+    public function laporan_penjualan(){
+        $user = new CendanaModel;
+        $penjualan = $user->data_penjualan();
+        return view('laporan_penjualan', compact(['penjualan']));
+    }
+    public function laporan_masuk_produk(){
+        $user = new CendanaModel;
+        $masuk = $user->data_masuk();
+        return view('laporan_masukproduk', compact(['masuk']));
+    }
+    public function laporan_keluar_produk(){
+        $user = new CendanaModel;
+        $keluar = $user->data_keluar();
+        return view('laporan_keluarproduk', compact(['keluar']));
+    }
+   
 }

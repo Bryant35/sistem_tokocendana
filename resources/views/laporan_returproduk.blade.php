@@ -9,9 +9,35 @@
 </head>
 @include('navbar')
 <body>
-    <div class="row" style="margin-left: 70px; margin-right:0.25rem">
-        <h1>RETUR PRODUK</h1>
+    <div class="container">
+        <div class="row" style="margin-right:0.25rem; margin-top:15px;">
+            <h1>RETUR PRODUK</h1>
+        </div>
+        <div class="rectangle">
+            <table class="table table-striped table-hover border rounded">
+                <thead>
+                    <tr>
+                        <th>ID RETUR</td>
+                        <th scope="col">Nama Produk</th>
+                        <th scope="col">Tanggal</th>
+                        <th scope="col">Jumlah Produk Retur</th>
+                        <th scope="col">Jumlah Pengembalian</th>
+                        <tbody>
+                            @foreach($retur as $kon)
+                                <tr>
+                                    <th>{{$kon->RETUR_ID}}</th>
+                                    <td>{{$kon->NAMA_PRODUK}}</td>
+                                    <td>{{$kon->TGL_RETUR}}</td>
+                                    <td>{{$kon->JML_PRODUK}}</td>
+                                    <td>{{$kon->TOTAL_RETUR}}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
     </div>
-    <div class="rectangle"></div>
 </body>
 </html>

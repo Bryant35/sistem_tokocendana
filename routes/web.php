@@ -118,25 +118,15 @@ Route::get('/deleteprodukmentah', function () {
     return view('deletementah');
 });
 
-Route::get('/laporankonversistok', function () {
-    return view('laporankonversistok');
-});
+Route::get('/laporankonversistok', 'App\Http\Controllers\CendanaController@laporan_konversi_stok');
 
-Route::get('/laporanmasukproduk', function () {
-    return view('laporan_masukproduk');
-});
+Route::get('/laporanmasukproduk', 'App\Http\Controllers\CendanaController@laporan_masuk_produk');
 
-Route::get('/laporankeluarproduk', function () {
-    return view('laporan_keluarproduk');
-});
+Route::get('/laporankeluarproduk', 'App\Http\Controllers\CendanaController@laporan_keluar_produk');
 
-Route::get('/laporanreturproduk', function () {
-    return view('laporan_returproduk');
-});
+Route::get('/laporanreturproduk', 'App\Http\Controllers\CendanaController@laporan_retur_produk');
 
-Route::get('/laporanpenjualan', function () {
-    return view('laporan_penjualan');
-});
+Route::get('/laporanpenjualan', 'App\Http\Controllers\CendanaController@laporan_penjualan');
 
 Route::get('/insertcustomerretur', 'App\Http\Controllers\CendanaController@view_insert_customer_retur');
 

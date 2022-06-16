@@ -455,4 +455,47 @@ class CendanaModel extends Model
         $res_update_mentah = DB::update($update_mentah);
         return $res_update_mentah;
     }
+
+
+    //LAPORAN
+    public function data_konversi2(){
+        $cmd = "SELECT K.KONVERSI_ID, K.PRODUK_ID, K.MENTAH_ID, P.NAMA_PEGAWAI, K.TGL_KONVERSI, K.NAMA_PRDKJADI, K.JML_PRDKMENTAH, K.JML_PRDKJADI, K.KONVERSI_DELETE FROM `KONVERSI` K, PEGAWAI P WHERE P.PEGAWAI_ID = K.PEGAWAI_ID AND KONVERSI_DELETE = 0;";
+        $res = DB::select($cmd);
+        if(isset($res) && count($res) > 0){
+            return $res;
+        }
+        return null;
+    }
+    public function data_retur(){
+        $cmd = "SELECT * FROM TRANSAKSI_RETUR;";
+        $res = DB::select($cmd);
+        if(isset($res) && count($res) > 0){
+            return $res;
+        }
+        return null;
+    }
+    public function data_penjualan(){
+        $cmd = "SELECT `JUAL_ID`, `RETUR_ID`, C.`NAMA_CUST`, `TGL_BELI`, `JML_PRODUK`, `TOTAL_JUAL`, `JUAL_DELETE` FROM `TRANSAKSI_JUAL` T, CUSTOMER C WHERE T.CUST_ID = C.CUST_ID AND JUAL_DELETE = 0;";
+        $res = DB::select($cmd);
+        if(isset($res) && count($res) > 0){
+            return $res;
+        }
+        return null;
+    }
+    public function data_masuk(){
+        $cmd = "SELECT * FROM `PRODUK_MENTAH`;  ";
+        $res = DB::select($cmd);
+        if(isset($res) && count($res) > 0){
+            return $res;
+        }
+        return null;
+    }
+    public function data_keluar(){
+        $cmd = "SELECT D.JUAL_ID, P.NAMA_PRODUK, QTY_JUAL, HARGA_JUAL, TGL_BELI FROM `TRANSAKSI_JUAL` T, `DETAIL_JUAL` D, `PRODUK` P WHERE T.JUAL_ID = D.JUAL_ID AND P.PRODUK_ID = D.PRODUK_ID;";
+        $res = DB::select($cmd);
+        if(isset($res) && count($res) > 0){
+            return $res;
+        }
+        return null;
+    }
 }
