@@ -10,43 +10,45 @@
 <body>
     @include('navbar')
     <div class="container">
-        <h1 class="fw-bold">Update Penyesuaian Stok</h1>
+        <h1 class="fw-bold mt-2 mb-4">Update Penyesuaian Stok</h1>
         <div class="row">
             <div class="col">
                 <div class="card">
                     <div class="card-body" style="height: 500px; background-color: #EBEBEB;">
-                        <h2 class=" card-title fw-bold"><span>Produk Mentah</span>/Produk Jadi</h2>
+                        <h2 class=" card-title fw-bold"><a href="/updatepenyesuaistok" style="text-decoration: none;"><span>Produk Mentah</span></a>/Produk Jadi</h2>
                         <br>
-                        <div class="row">
-                            <div class="col col-lg-2""><h5>ID Produk Mentah: </h5></div>
-                            <div class="col-8">
-                                <input type="name" name="id_produk_mentah" style="background-color: #F4F9FF;" list="idLIST" id="pilih_id" class="form-control dropbtn shadow bg-body" placeholder="Search ID Produk Mentah">
-                                <datalist id="idLIST">
-                                    <option value="PAM001">
-                                    <option value="PAJ001">
-                                    <option value="Alexa Wong">
-                                    <option value="Andini Triapsari">
-                                    <option value="Denisa">
-                                </datalist>
+                        <form action="/penyesuaianprodukjadi" method="POST">
+                            @csrf
+                            <div class="row">
+                                <div class="col col-lg-2""><h5>ID Produk Jadi: </h5></div>
+                                <div class="col-8">
+                                    <input type="name" name="id_produk_jadi" style="background-color: #F4F9FF;" list="idLIST" id="pilih_id" class="form-control dropbtn shadow bg-body" placeholder="Search ID Produk Jadi">
+                                    <datalist id="idLIST">
+                                        @foreach ($produk_show as $produk)
+                                            <option value="{{$produk->PRODUK_ID}} - {{$produk->NAMA_PRODUK}}">
+                                        @endforeach
+                                    </datalist>
+                                </div>
                             </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col col-lg-2""><h5>Jumlah Produk: </h5></div>
-                            <div class="col-auto"><button class="btn" id="minus">−</button></div>
-                            <div class="col-auto">
-                            <input type="number" class="form-control text-center shadow bg-body" style="width: 100px" min="0" value="0" id="input"/>
+                            <br>
+                            <div class="row">
+                                <div class="col col-lg-2""><h5>Jumlah Produk Rusak : </h5></div>
+                                <div class="btn-group col-auto" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-outline-primary" id="minus">-</button>
+                                    {{-- <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2"> --}}
+                                    <input type="number" name="qty" class="text-center" style="width: 100px" min="0" value="0" id="input"/>
+                                    <button type="button" class="btn btn-outline-primary" id="plus">+</button>
+                                </div>
                             </div>
-                            <div class="col-auto"><button class="btn" id="plus">+</button></div>
-                        </div>
-                        <div class="row position-absolute bottom-0 start-50 translate-middle-x mb-4">
-                            <div class="col">
-                                <div class="btn border-end border-bottom border-3 rounded fw-bold shadow bg-body" style="background-color:white; color: #1672EC;">Update</div>
+                            <div class="row position-absolute bottom-0 start-50 translate-middle-x mb-4">
+                                <div class="col">
+                                    <input type="submit" class="btn border-end border-bottom border-3 rounded fw-bold shadow bg-body" style="background-color:white; color: #1672EC;" value="Update">
+                                </div>
+                                <div class="col">
+                                    <div class="btn border-end border-bottom border-3 rounded fw-bold shadow bg-body" style="background-color:white; color: grey;">Cancel</div>
+                                </div>
                             </div>
-                            <div class="col">
-                                <div class="btn border-end border-bottom border-3 rounded fw-bold shadow bg-body" style="background-color:white; color: grey;">Cancel</div>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

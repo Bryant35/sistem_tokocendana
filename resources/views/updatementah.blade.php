@@ -13,66 +13,56 @@
         <div class="row">
             <div class="col">
                 <div class="card">
-                    <div class="card-body" style="height: 500px; background-color: #EBEBEB;">
-                        <div class="row">
-                        <div class="col-6 col-sm-3"><h5>ID Produk Mentah: </h5></div>
-                            <div class="col-8">
-                                <input type="name" name="id_produk_mentah" style="background-color: #F4F9FF;" list="idLIST" id="pilih_id" class="form-control dropbtn shadow bg-body" placeholder="Search ID Retur">
-                                <datalist id="idLIST">
-                                    <option value="PAM001">
-                                    <option value="PAJ001">
-                                    <option value="Alexa Wong">
-                                    <option value="Andini Triapsari">
-                                    <option value="Denisa">
-                                </datalist>
+                    <form action="/runupdatementah" method="POST">
+                        @csrf
+                        <div class="card-body" style="height: 500px; background-color: #EBEBEB;">
+                            <div class="row">
+                                <label class = "col-6 col-sm-3" for="idmentah"><h5>ID Produk Mentah:</h5></label>
+                                <input type="hidden" class="col-auto" id="idmentah" name="idmentah" value="{{$detail_produkmentah[0]->MENTAH_ID}}">
+                                <input type="text" class="col-auto" id="idmentah" name="idmentah2" value="{{$detail_produkmentah[0]->MENTAH_ID}}" disabled>
                             </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-6 col-sm-3"><h5>ID Konversi: </h5></div>
-
-                        </div>
-                        <br>
-                        <div class="row">
-                            <form action="">
+                            <br>
+                            <div class="row">
+                                <label class = "col-6 col-sm-3" for="idkonversi"><h5>ID Konversi:</h5></label>
+                                <input type="text" class="col-auto" id="idkonversi" name="idkonversi" value="{{$detail_produkmentah[0]->KONVERSI_ID}}" disabled>
+                            </div>
+                            <br>
+                            <div class="row">
                                 <label class = "col-6 col-sm-3" for="namamentah"><h5>Nama Produk Mentah:</h5></label>
-                                <input type="text" id="namamentah" name="namamentah">
-                            </form>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <form action="">
-                                <label class = "col-6 col-sm-3" for="jenismentah"><h5>Jenis Produk Mentah:</h5></label>
-                                <input type="text" id="jenismentah" name="jenismentah">
-                            </form>
-                        </div>
-                        <br>
-                        <br>
-                        <div class="row">
-                            <div class="col-6 col-sm-3""><h5>Jumlah Produk Mentah: </h5></div>
-                            <div class="col-auto"><button class="btn" id="minus">−</button></div>
-                            <div class="col-auto">
-                            <input type="number" class="form-control text-center shadow bg-body" style="width: 100px" min="0" value="0" id="input"/>
+                                <input type="text" class="col-auto" id="namamentah" name="namamentah" value="{{$detail_produkmentah[0]->NAMA_PRODUK}}">
                             </div>
-                            <div class="col-auto"><button class="btn" id="plus">+</button></div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <form action="">
+                            <br>
+                            <div class="row">
+                                    <label class = "col-6 col-sm-3" for="jenismentah"><h5>Jenis Produk Mentah:</h5></label>
+                                    <input type="text" class="col-auto" id="jenismentah" name="jenismentah" value="{{$detail_produkmentah[0]->JENIS_PRODUK}}">
+                            </div>
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col-6 col-sm-3""><h5>Jumlah Produk Mentah: </h5></div>
+                                <div class="col-auto"><button class="btn" id="minus">−</button></div>
+                                <div class="col-auto">
+                                <input type="number" name="jumlah" class="form-control text-center shadow bg-body" style="width: 100px" min="0" value="{{$detail_produkmentah[0]->JML_PRODUK}}" id="input"/>
+                                </div>
+                                <div class="col-auto"><button class="btn" id="plus">+</button></div>
+                            </div>
+                            <br>
+                            <div class="row">
                                 <label class = "col-6 col-sm-3" for="expproduk"><h5>Expired Produk:</h5></label>
-                                <input type="datetime-local" id="expproduk" name="expproduk">
-                              </form>
-                        </div>
-                        <br>
-                        <div class="row position-absolute bottom-0 start-50 translate-middle-x mb-4">
-                            <div class="col">
-                                <div class="btn border-end border-bottom border-3 rounded fw-bold shadow bg-body" style="background-color:white; color: grey;">Cancel</div>
+                                <input type="date" class="col-auto" id="expproduk" name="expproduk" value="{{$detail_produkmentah[0]->EXPIRED_PRODUK}}">
                             </div>
-                            <div class="col">
-                                <div class="btn border-end border-bottom border-3 rounded fw-bold shadow bg-body" style="background-color:white; color: #1672EC;">Update</div>
+                            <br>
+                            <div class="row position-absolute bottom-0 start-50 translate-middle-x mb-4">
+                                <div class="col">
+                                    <a href="/produkmentah" onclick=""><div class="btn border-end border-bottom border-3 rounded fw-bold shadow bg-body" style="background-color:white; color: grey;">Cancel</div></a>
+                                </div>
+                                <div class="col">
+                                    <input type="submit" class="btn border-end border-bottom border-3 rounded fw-bold shadow bg-body" style="background-color:white; color: #1672EC;" value="Update">
+                                    {{-- <div class="btn border-end border-bottom border-3 rounded fw-bold shadow bg-body" style="background-color:white; color: #1672EC;">Update</div> --}}
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

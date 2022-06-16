@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Update Transaksi Penjualan - Cendana Snack</title>
     <link rel="stylesheet" href="css/btn-hover.css">
+    
 </head>
 <body>
     @include('navbar')
@@ -27,7 +28,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">TJ0000001</th>
+                                <th scope="row">{{$detail_penjualan->JUAL_ID}}</th>
                                 <td>TR0000001</td>
                                 <td>CPS0001</td>
                                 <td>Bidaran Keju 200gr</td>

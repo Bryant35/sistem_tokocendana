@@ -31,6 +31,11 @@
                                         <th scope="row">{{$listpegawai->PEGAWAI_ID}}</th>
                                         <td>{{$listpegawai->NAMA_PEGAWAI}}</td>
                                         <td>{{$listpegawai->JOB_PEGAWAI}}</td>
+                                        <form action="/updatepegawai" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id_pegawai" value="{{$listpegawai->PEGAWAI_ID}}">
+                                        <td><input type="submit" value="Update"></td>
+                                        </form>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -42,9 +47,7 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body" style="height: 500px; background-color: #EBEBEB;">
-                        <button type="button" class="block">Insert</button>
-                        <button type="button" class="block">Update</button>
-                        <button type="button" class="block">Delete</button>
+                        <a href="/insertpegawai" style="text-decoration: none; color: black;"><button type="button" class="block">Insert</button></a>
                     </div>
                 </div>
             </div>

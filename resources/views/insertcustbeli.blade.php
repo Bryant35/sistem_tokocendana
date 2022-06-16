@@ -15,21 +15,22 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body" style="height: 500px; background-color: #EBEBEB;">
-                        <form action="" method="GET">
+                        <form action="/inserttransaksijual" method="POST">
+                            @csrf
                         <div class="row">
                             <div class="col-6 col-sm-3"><h5>ID Transaksi: </h5></div>
-                            <div class="col-3"><h5>{{$data_newid[0]->ID_BARU_JUAL}} </h5></div>
+                            <div class="col-3"><h5><input type="hidden" name="tj_baru" value="{{$data_newid[0]->ID_BARU_JUAL}}">{{$data_newid[0]->ID_BARU_JUAL}}</h5></div>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-6 col-sm-3"><h5>ID Retur: </h5></div>
-                            <div class="col-3"><h5>{{$data_newid[0]->ID_BARU_RETUR}} </h5></div>
+                            <div class="col-3"><h5><input type="hidden" name="tr_baru" value="{{$data_newid[0]->ID_BARU_RETUR}}">{{$data_newid[0]->ID_BARU_RETUR}}</h5></div>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-6 col-sm-3"><h5>ID Customer - Nama Customer: </h5></div>
                             <div class="col-3">
-                                <input type="name" name="id_customer" onclick="getCustName()" style="background-color: #F4F9FF; width: 150%;" list="idLIST" id="pilihid" name="getid" class="form-control dropbtn shadow bg-body" placeholder="Search ID Customer">
+                                <input type="name" name="id_customer" onclick="getCustName()" style="background-color: #F4F9FF; width: 150%;" list="idLIST" id="pilihid" name="getid" class="form-control dropbtn shadow bg-body" placeholder="Search ID Customer" required>
                                 <datalist id="idLIST">
                                     @foreach($get_custid as $custid)
                                             <option value="{{$custid->CUST_ID}} - {{$custid->NAMA_CUST}}">
@@ -48,7 +49,7 @@
                                 <div class="btn border-end border-bottom border-3 rounded fw-bold shadow bg-body" style="background-color:white; color: grey;"><a href="/transaksijual" style="text-decoration: none; color: grey;">Cancel</a></div>
                             </div>
                             <div class="col">
-                                <div class="btn border-end border-bottom border-3 rounded fw-bold shadow bg-body" style="background-color:white; color: #1672EC;"><a href="" style="text-decoration: none;">Next</a></div>
+                                <input type="submit" class="btn border-end border-bottom border-3 rounded fw-bold shadow bg-body" style="background-color:white; color: #1672EC;" value="Next">
                             </div>
                         </div>
                         </form>

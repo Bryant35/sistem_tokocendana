@@ -31,12 +31,17 @@
                             <tbody>
                                 @foreach($data_produkmentah as $listmentah)
                                     <tr>
-                                        <th scope="row">{{$listmentah->MENTAH_ID}}</th>
+                                        <th>{{$listmentah->MENTAH_ID}}</th>
                                         <td>{{$listmentah->KONVERSI_ID}}</td>
                                         <td>{{$listmentah->NAMA_PRODUK}}</td>
                                         <td>{{$listmentah->JENIS_PRODUK}}</td>
                                         <td>{{$listmentah->JML_PRODUK}}</td>
                                         <td>{{$listmentah->EXPIRED_PRODUK}}</td>
+                                        <form action="/detailmentah" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="mentahid" value="{{$listmentah->MENTAH_ID}}">
+                                            <td><input type="submit" value="Update"></td>
+                                        </form>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -47,14 +52,12 @@
 
             <div class="col-4">
                 <div class="card">
-                    <div class="card-body" style="height: 500px; background-color: #EBEBEB;">
-                        <button type="button" class="block">Insert</button>
-                        <button type="button" class="block">Update</button>
-                        <button type="button" class="block">Delete</button>
+                    <div class="card-body" style="height: 180px; background-color: #EBEBEB;">
+                        <a href="/insertprodukmentah" style="text-decoration: none; color: black;"><button type="button" class="block">Insert</button></a>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>  
     </div>
 </body>
 </html>

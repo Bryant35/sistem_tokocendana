@@ -35,6 +35,11 @@
                                         <td>{{$listcustomer->STATUS_CUST}}</td>
                                         <td>{{$listcustomer->ALAMAT_CUST}}</td>
                                         <td>{{$listcustomer->TELP_CUST}}</td>
+                                        <form action="/detail-customer" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="idcust" value="{{$listcustomer->CUST_ID}}">
+                                            <td><input type="submit" value="Update"></td>
+                                        </form>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -45,10 +50,8 @@
 
             <div class="col-sm-4">
                 <div class="card">
-                    <div class="card-body" style="height: 500px; background-color: #EBEBEB;">
-                        <button type="button" class="block">Insert</button>
-                        <button type="button" class="block">Update</button>
-                        <button type="button" class="block">Delete</button>
+                    <div class="card-body" style="height: 180px; background-color: #EBEBEB;">
+                        <a href="/insertcustomer" style="text-decoration: none; color: black;"><button type="button" class="block">Insert</button></a>
                     </div>
                 </div>
             </div>
