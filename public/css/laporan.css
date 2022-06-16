@@ -1,0 +1,21 @@
+.rectangle{
+    height: auto;
+    width: 1240px;
+    background-color: #EBEBEB;
+    margin-top: 10px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin-bottom: 50px;
+}
+
+span a{
+    color :#B8B8B8;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+span a:hover{
+    color :black;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}

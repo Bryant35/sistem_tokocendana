@@ -1,0 +1,16 @@
+.block{
+    display: block;
+    width: 100%;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    padding: 14px 28px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 17%;
+}
+.block:hover {
+    background-color: #ddd;
+    color: black;
+}
