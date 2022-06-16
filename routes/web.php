@@ -26,9 +26,8 @@ Route::get('/', function () {
 // TAB TOKO
 Route::get('/transaksijual', 'App\Http\Controllers\CendanaController@transaksi_penjualan');
 
-Route::get('/konversi', function () {
-    return view('konversi');
-});
+Route::get('/konversi', 'App\Http\Controllers\CendanaController@konversi');
+Route::POST('/insertkonversi', 'App\Http\Controllers\CendanaController@insert_konversi');
 
 Route::get('/insertcustbeli', 'App\Http\Controllers\CendanaController@view_insert_transaksi_penjualan');
 // Route::get('/insertpembeli', function () {
@@ -61,9 +60,7 @@ Route::get('/deletepembeli', function () {
 
 Route::POST('/detailpenjualan', 'App\Http\Controllers\CendanaController@view_detail_transaksi');
 
-Route::get('/penyesuaistok', function () {
-    return view('penyesuaistok');
-});
+Route::get('/penyesuaistok', 'App\Http\Controllers\CendanaController@penyesuaian_stok');
 
 Route::get('/updatepenyesuaistok', 'App\Http\Controllers\CendanaController@tampilan_list_produk_mentah');
 Route::POST('/penyesuaianprodukmentah', 'App\Http\Controllers\CendanaController@update_stock_produk_mentah');
@@ -73,9 +70,7 @@ Route::get('/updatepenyesuaistokjadi', 'App\Http\Controllers\CendanaController@t
 //PEGAWAI
 Route::get('/pegawai', 'App\Http\Controllers\CendanaController@view_pegawai');
 
-Route::get('/insertpegawai', function () {
-    return view('insertpegawai');
-});
+Route::get('/insertpegawai', 'App\Http\Controllers\CendanaController@view_insert_pegawai');
 Route::POST('/pegawaiinsert', 'App\Http\Controllers\CendanaController@data_insert_pegawai');
 Route::POST('/updatepegawai', 'App\Http\Controllers\CendanaController@view_update_pegawai');
 Route::post('/updatedatapegawai', 'App\Http\Controllers\CendanaController@update_pegawai');

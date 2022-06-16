@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/ins-up-del.css">
 </head>
 @include('navbar')
-<body>
+<body >
 <div class="container">
         <h1>PEGAWAI</h1>
         <hr>
@@ -46,12 +46,17 @@
 
             <div class="col-sm-4">
                 <div class="card">
-                    <div class="card-body" style="height: 500px; background-color: #EBEBEB;">
+                    <div class="card-body" style="height: 180px; background-color: #EBEBEB;">
                         <a href="/insertpegawai" style="text-decoration: none; color: black;"><button type="button" class="block">Insert</button></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        // function myFunction() {
+        //     alert({{$message}});
+        // }
+    </script>
 </body>
 </html>

@@ -16,13 +16,16 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body" style="height: 500px; background-color: #EBEBEB;">
-                        <form action="" method="POST">
+                        <form action="/insertkonversi" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col col-lg-3""><h5>Input Produk Mentah: </h5></div>
                                 <div class="col-8">
-                                    <input type="name" name="produkmentah" style="background-color: #F4F9FF;" list="idLIST" id="pilih_id" class="form-control dropbtn shadow bg-body" placeholder="Search Produk Mentah">
-                                    <datalist id="idLIST">
+                                    <input type="search" name="idprodukmentah" style="background-color: #F4F9FF;" list="idLISTmentah" id="pilih_id" class="form-control dropbtn shadow bg-body" placeholder="Search Produk Mentah">
+                                    <datalist id="idLISTmentah">
+                                        @foreach ($produkmentah_show as $item)
+                                            <option value="{{ $item->MENTAH_ID }}">{{ $item->NAMA_PRODUK }}</option>
+                                        @endforeach
                                     </datalist>
                                 </div>
                             </div>
@@ -30,15 +33,24 @@
                             <div class="row">
                                 <label class="col col-lg-3" for="qtykonversi"><h5>Jumlah yang akan Dikonversi:</h5></label>
                                 <div class="col-1">
-                                    <input class="form-control dropbtn shadow bg-body" type="number" id="qtykonversi" name="qtykonversi">
+                                    <input class="form-control dropbtn shadow bg-body" name="qtymentah" type="number" onkeyup="runmultiply()" onclick="runmultiply()" id="qtykonversi" name="qtykonversi">
+                                </div>
+                                <div class="col-auto mt-2">
+                                    <i class="bi bi-x"></i>
+                                </div>
+                                <div class="col-1">
+                                    <input class="form-control dropbtn shadow bg-body" type="number" onkeyup="runmultiply()" onclick="runmultiply()" id="multikonversi" name="qtykonversi">
                                 </div>
                             </div>
                             <br>
                             <div class="row">
                                 <div class="col col-lg-3""><h5>Akan Menjadi Produk: </h5></div>
                                 <div class="col-8">
-                                    <input type="name" name="produkjadi" style="background-color: #F4F9FF;" list="idLIST2" id="pilih_id" class="form-control dropbtn shadow bg-body" placeholder="Search Produk Jadi">
-                                    <datalist id="idLIST2">
+                                    <input type="search" name="idprodukkonversi" style="background-color: #F4F9FF;" list="idLISTkonversi" id="pilih_id" class="form-control dropbtn shadow bg-body" placeholder="Search Produk Jadi">
+                                    <datalist id="idLISTkonversi">
+                                        @foreach ($konversi as $kon)
+                                            <option value="{{ $kon->PRODUK_ID }}">{{ $kon->NAMA_PRDKJADI }}</option>
+                                        @endforeach
                                     </datalist>
                                 </div>
                             </div>
@@ -46,16 +58,16 @@
                             <div class="row">
                                 <label class="col col-lg-3" for="qtyhasilkonversi"><h5>Jumlah Hasil Dikonversi:</h5></label>
                                 <div class="col-1">
-                                    <input class="form-control dropbtn shadow bg-body" type="number" id="qtyhasilkonversi" name="qtyhasilkonversi">
+                                    <input class="form-control dropbtn shadow bg-body" type="number" id="qtyhasilkonversi" name="qtyjadi">
                                 </div>
                             </div>
                             <br>
                             <div class="row position-absolute bottom-0 start-50 translate-middle-x mb-4">
                                 <div class="col">
-                                    <input type="submit" class="btn border-end border-bottom border-3 rounded fw-bold shadow bg-body" style="background-color:white; color: #1672EC;" value="Save">
+                                    <a href="/konversi"></a><div class="btn border-end border-bottom border-3 rounded fw-bold shadow bg-body" style="background-color:white; color: grey;">Cancel</div></a>
                                 </div>
                                 <div class="col">
-                                    <div class="btn border-end border-bottom border-3 rounded fw-bold shadow bg-body" style="background-color:white; color: grey;">Cancel</div>
+                                    <input type="submit" class="btn border-end border-bottom border-3 rounded fw-bold shadow bg-body" style="background-color:white; color: #1672EC;" value="Save">
                                 </div>
                             </div>
                         </form>
@@ -64,5 +76,24 @@
             </div>
         </div>
     </div>
+    <script>
+        const jumlahkonversi = document.getElementById("qtykonversi");
+        const kalikonversi = document.getElementById("multikonversi");
+        const inputField = document.getElementById("qtyhasilkonversi");
+
+        // jumlahkonversi.addEventListener('keyDown', event => {
+        //     event.preventDefault();
+        //     inputField.value = jumlahkonversi.value * kalikonversi.value;
+        // });
+
+        // kalikonversi.addEventListener('click', event => {
+        //     event.preventDefault();
+        //     inputField.value = jumlahkonversi.value * kalikonversi.value;
+        // });
+
+        function runmultiply() {
+            inputField.value = jumlahkonversi.value * kalikonversi.value;
+        }
+    </script>
 </body>
 </html>

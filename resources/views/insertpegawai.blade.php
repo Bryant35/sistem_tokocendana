@@ -26,7 +26,12 @@
                             <div class="row">
                                 <label class="col-6 col-sm-3" for="jobpegawai"><h5>Job Pegawai:</h5></label>
                                 <div class="col-3">
-                                    <input class="col-auto" type="text" id="jobpegawai" name="jobpegawai" required maxlength="30" size="30">
+                                    <input class="col-auto" type="text" id="jobpegawai" name="jobpegawai" list="listJOB" required maxlength="30" size="30">
+                                    <datalist id="listJOB">
+                                        @foreach ($list_job as $list)
+                                            <option value="{{$list->JOB_PEGAWAI}}"></option>
+                                        @endforeach
+                                    </datalist>
                                 </div>
                             </div>
                             <br>

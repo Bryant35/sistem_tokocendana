@@ -6,53 +6,42 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Penyesuaian Stok - Cendana Snack</title>
     <link rel="stylesheet" href="{{ asset('css/sesuaistok.css') }}">
+    <style>
+        .table {
+            position: sticky;
+            top: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     @include('navbar')
     <div class="container">
         <h1>Penyesuaian Stok</h1>
         <hr>
-        <div class="row">
+        <div class="row mb-5">
             <div class="col">
                 <div class="card">
-                    <div class="card-body" style="height: 500px; background-color: #EBEBEB;">
+                    <div class="card-body" style="background-color: #EBEBEB;">
                         <h5 class="text-center card-title fw-bold">Detail</h5>
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID Jual</th>
-                                    <th scope="col">ID Retur</th>
-                                    <th scope="col">Cust ID</th>
+                                    <th scope="col">Produk ID</th>
                                     <th scope="col">Nama Produk</th>
                                     <th scope="col">Jumlah Produk</th>
-                                    <th scope="col">Total Jual</th>
+                                    <th scope="col">Tanggal Expired</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($data_penyesuaian_stok as $produks)
                                 <tr>
-                                    <th scope="row">TJ0000001</th>
-                                    <td>TR0000001</td>
-                                    <td>CPS0001</td>
-                                    <td>Bidaran Keju 200gr</td>
-                                    <td>3</td>
-                                    <td>33000</td>
+                                    <th scope="row">{{$produks->PRODUK_ID}}</th>
+                                    <td>{{$produks->NAMA_PRODUK}}</td>
+                                    <td>{{$produks->QUANTITY_PRODUK}}</td>
+                                    <td>{{$produks->EXPIRED_PRODUK}}</td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">TJ0000002</th>
-                                    <td>TR0000002</td>
-                                    <td>CHY0001</td>
-                                    <td>Keciput Bulat 300gr, Keju Stick 200gr</td>
-                                    <td>6</td>
-                                    <td>69000</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">TJ0000003</th>
-                                    <td>TR0000003</td>
-                                    <td>CRS0001</td>
-                                    <td>Koro Keju 300gr</td>
-                                    <td>2</td>
-                                    <td>28000</td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -60,8 +49,10 @@
             </div>
             <div class="col-sm-4">
                 <div class="card">
-                    <div class="card-body" style="height: 500px; background-color: #EBEBEB;">
-                        <a type="button" href="/updatepenyesuaistok" class="block">Update</a>
+                    <div class="card-body" style="height: 180px; background-color: #EBEBEB;">
+                        <div class="" style="margin-top: -40%;">
+                            <a href="/updatepenyesuaistok" style="text-decoration: none; color: black;"><button type="button" class="block">Update</button></a>
+                        </div>
                     </div>
                 </div>
             </div>

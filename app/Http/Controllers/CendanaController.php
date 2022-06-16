@@ -280,6 +280,11 @@ class CendanaController extends Controller
         $data_pegawai = $user->get_data_pegawai();
         return view('master_pegawai', compact(['data_pegawai']));
     }
+    public function view_insert_pegawai(){
+        $user = new CendanaModel;
+        $list_job = $user->get_list_job();
+        return view('insertpegawai', compact(['list_job']));
+    }
     public function view_update_pegawai(Request $req){
         $id_pegawai = $req->input('id_pegawai');
         $user = new CendanaModel;
@@ -297,11 +302,12 @@ class CendanaController extends Controller
         if($passbarupegawai == null && $passkonbarupegawai == null){
             $update_pegawai = $user->update_pegawai($id_pegawai, $nama_pegawai, $jobpegawai, $passpegawai);
         }else{
-            $update_pegawai = $user->update_passpegawai($id_pegawai, $nama_pegawai, $jobpegawai, $passpegawai, $passkonbarupegawai, $passbarupegawai);
-            if($update_pegawai == null){
-                return redirect('/updatepegawai');
+            if($passbarupegawai != $passkonbarupegawai){
+                return redirect('/pegawai')->with('message', 'Password baru tidak sama');
             }
+            $update_pegawai = $user->update_passpegawai($id_pegawai, $nama_pegawai, $jobpegawai, $passpegawai, $passkonbarupegawai, $passbarupegawai);
         }
+        // dd(update_pegawai);
         return redirect('/pegawai');
     }
     public function data_insert_pegawai(Request $req){
@@ -355,6 +361,11 @@ class CendanaController extends Controller
     }
 
     //PENYESUAIAN STOK
+    public function penyesuaian_stok(){
+        $user = new CendanaModel;
+        $data_penyesuaian_stok = $user->get_data_penyesuaian_stok();
+        return view('penyesuaistok', compact(['data_penyesuaian_stok']));
+    }
     public function tampilan_list_produk_mentah(){
         $user = new CendanaModel;
         $produk_show = $user->data_produk_mentah();
@@ -409,5 +420,23 @@ class CendanaController extends Controller
             }
         }
         return view('update_penyesuaianstokjadi', compact(['produk_show']));
+    }
+
+    //Konversi
+    public function konversi(){
+        $user = new CendanaModel;
+        $produkmentah_show = $user->data_produk_mentah();
+        $konversi = $user->data_konversi();
+        return view('konversi', compact(['produkmentah_show', 'konversi']));
+    }
+    public function insert_konversi(Request $req){
+        $id_peg = Session::get('login');
+        $id_produk_mentah = $req->input('idprodukmentah');
+        $qtymentah = $req->input('qtymentah');
+        $id_produk_konversi = $req->input('idprodukkonversi');
+        $qtyjadi = $req->input('qtyjadi');
+        $user = new CendanaModel;
+        $insert_konversi = $user->insert_konversi($id_produk_mentah, $qtymentah, $id_peg, $id_produk_konversi, $qtyjadi);
+        return redirect('/konversi');
     }
 }

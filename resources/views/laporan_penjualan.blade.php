@@ -10,7 +10,7 @@
 @include('navbar')
 <body>
     <div class="row" style="margin-left: 70px; margin-right:0.25rem">
-        <h1>KONVERSI STOK</h1>
+        <h1>PENJUALAN STOK</h1>
     </div>
     <div class="rectangle"></div>
 </body>

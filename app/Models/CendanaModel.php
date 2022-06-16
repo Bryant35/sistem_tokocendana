@@ -226,9 +226,6 @@ class CendanaModel extends Model
         return null;
     }
 
-
-
-
     //produk mentah
     public function get_data_produkmentah(){
         $cmd = "SELECT * FROM PRODUK_MENTAH;";
@@ -346,31 +343,37 @@ class CendanaModel extends Model
         return null;
     }
     public function update_pegawai($id_pegawai, $nama_pegawai, $jobpegawai, $passpegawai){
-        $check = DB::select("SELECT * FROM PEGAWAI WHERE PEGAWAI_ID = '".$id_pegawai."' AND PEGAWAI_DELETE = 0 AND PASSWORD_PEGAWAI = '".$passpegawai."';");
-        $res = DB::select($check);
+        $check = DB::select("SELECT * FROM PEGAWAI WHERE PEGAWAI_ID = '".$id_pegawai."' AND PEGAWAI_DELETE = 0 AND PASS_PEG = '".$passpegawai."';");
         if(isset($res) && count($res) > 0){
-            $cmd = "UPDATE `PEGAWAI` SET `NAMA_PEGAWAI`='".$nama_pegawai."',`JOB_PEGAWAI`='".$jobpegawai."' WHERE PEGAWAI_ID = '".$id_pegawai."' AND `PASSWORD_PEGAWAI`='".$passpegawai."';";
+            $cmd = "UPDATE `PEGAWAI` SET `NAMA_PEGAWAI`='".$nama_pegawai."',`JOB_PEGAWAI`='".$jobpegawai."' WHERE PEGAWAI_ID = '".$id_pegawai."' AND `PASS_PEG`='".$passpegawai."';";
             $res = DB::update($cmd);
             return $res;
         }
         return null;
     }
     public function update_passpegawai($id_pegawai, $nama_pegawai, $jobpegawai, $passpegawai, $passkonbarupegawai, $passbarupegawai){
-        $check = DB::select("SELECT * FROM PEGAWAI WHERE PEGAWAI_ID = '".$id_pegawai."' AND PEGAWAI_DELETE = 0 AND PASSWORD_PEGAWAI = '".$passpegawai."';");
-        $res = DB::select($check);
+        $check = DB::select("SELECT * FROM PEGAWAI WHERE PEGAWAI_ID = '".$id_pegawai."' AND PEGAWAI_DELETE = 0 AND PASS_PEG = '".$passpegawai."';");
         if(isset($res) && count($res) > 0){
             if($passkonbarupegawai == $passkonbarupegawai){
-                $cmd = "UPDATE `PEGAWAI` SET `NAMA_PEGAWAI`='".$nama_pegawai."',`JOB_PEGAWAI`='".$jobpegawai."',`PASSWORD_PEGAWAI`='".$passbarupegawai."' WHERE PEGAWAI_ID = '".$id_pegawai."' AND `PASSWORD_PEGAWAI`='".$passpegawai."';";
+                $cmd = "UPDATE `PEGAWAI` SET `NAMA_PEGAWAI`='".$nama_pegawai."',`JOB_PEGAWAI`='".$jobpegawai."',`PASS_PEG`='".$passbarupegawai."' WHERE PEGAWAI_ID = '".$id_pegawai."' AND `PASS_PEG`='".$passpegawai."';";
                 $res = DB::update($cmd);
-                return $res;
+                return true;
             }
         }
         return null;
     }
     public function insert_pegawai($nama_pegawai, $jobpegawai, $passpegawai){
-        $cmd = "INSERT INTO `PEGAWAI`(`PEGAWAI_ID`, `NAMA_PEGAWAI`, `JOB_PEGAWAI`, `PASSWORD_PEGAWAI`) VALUES ('','".$nama_pegawai."','".$jobpegawai."','".$passpegawai."')";
+        $cmd = "INSERT INTO `PEGAWAI`(`PEGAWAI_ID`, `NAMA_PEGAWAI`, `JOB_PEGAWAI`, `PASS_PEG`) VALUES ('','".$nama_pegawai."','".$jobpegawai."','".$passpegawai."')";
         $res = DB::insert($cmd);
         return $res;
+    }
+    public function get_list_job(){
+        $cmd = "SELECT JOB_PEGAWAI FROM PEGAWAI GROUP BY JOB_PEGAWAI;";
+        $res = DB::select($cmd);
+        if(isset($res) && count($res) > 0){
+            return $res;
+        }
+        return null;
     }
 
     //CUSTOMER
@@ -415,6 +418,14 @@ class CendanaModel extends Model
     }
 
     //PENYESUAIAN
+    public function get_data_penyesuaian_stok(){
+        $cmd = "SELECT `PRODUK_ID`, `NAMA_PRODUK`, `QUANTITY_PRODUK`, `EXPIRED_PRODUK` FROM `PRODUK` UNION ALL SELECT `MENTAH_ID`, `NAMA_PRODUK`, `JML_PRODUK`, `EXPIRED_PRODUK` FROM `PRODUK_MENTAH`;";
+        $res = DB::select($cmd);
+        if(isset($res) && count($res) > 0){
+            return $res;
+        }
+        return null;
+    }
     public function update_stock_produk_mentah($id_produk, $qty){
         $cmd = "UPDATE PRODUK_MENTAH SET JML_PRODUK = JML_PRODUK - ".$qty." WHERE MENTAH_ID = '".$id_produk."';";
         $res = DB::update($cmd);
@@ -423,5 +434,25 @@ class CendanaModel extends Model
 
     public function update_stock_produk_jadi($id_produk, $qty){
         $cmd = "UPDATE PRODUK SET JML_PRODUK = JML_PRODUK - ".$qty." WHERE PRODUK_ID = '".$id_produk."';";
+    }
+
+    //Konversi
+    public function data_konversi(){
+        $cmd = "SELECT * FROM KONVERSI;";
+        $res = DB::select($cmd);
+        if(isset($res) && count($res) > 0){
+            return $res;
+        }
+        return null;
+    }
+    public function insert_konversi($id_produk_mentah, $qtymentah, $id_peg, $id_produk_konversi, $qtyjadi){
+        $select = DB::select("SELECT * FROM PRODUK WHERE PRODUK_ID = '".$id_produk_konversi."';");
+        $cmd = "INSERT INTO `KONVERSI`(`KONVERSI_ID`, `PRODUK_ID`, `MENTAH_ID`, `PEGAWAI_ID`, `TGL_KONVERSI`, `NAMA_PRDKJADI`, `JML_PRDKMENTAH`, `JML_PRDKJADI`, `KONVERSI_DELETE`) VALUES ('','".$id_produk_konversi."','".$id_produk_mentah."',UPPER('".$id_peg."'),date(now()),'".$select[0]->NAMA_PRODUK."',".$qtymentah.",".$qtyjadi.",'0')";
+        $res = DB::insert($cmd);
+        $update_jadi = "UPDATE PRODUK SET QUANTITY_PRODUK = QUANTITY_PRODUK + ".$qtyjadi." WHERE PRODUK_ID = '".$id_produk_konversi."';";
+        $res_update = DB::update($update_jadi);
+        $update_mentah = "UPDATE PRODUK_MENTAH SET JML_PRODUK = JML_PRODUK - ".$qtymentah." WHERE MENTAH_ID = '".$id_produk_mentah."';";
+        $res_update_mentah = DB::update($update_mentah);
+        return $res_update_mentah;
     }
 }
