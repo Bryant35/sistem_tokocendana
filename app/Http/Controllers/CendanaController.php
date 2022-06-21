@@ -195,6 +195,12 @@ class CendanaController extends Controller
         $insert_produkmentah = $user->insert_produkmentah($nama_produk, $jenis_produk, $jumlah, $exp_produk);
         return redirect('/produkmentah');
     }
+    public function delete_produk_mentah(Request $req){
+        $id_mentah = $req->input('idmentah_delete');
+        $user = new CendanaModel;
+        $delete_produkmentah = $user->delete_produkmentah($id_mentah);
+        return redirect('/produkmentah');
+    }
 
     //view produk jadi
     public function view_produk_jadi(){
@@ -242,6 +248,14 @@ class CendanaController extends Controller
         $insert_produkjadi = $user->insert_produkjadi($namaproduk, $jenis_produk, $harga_produk, $jumlah, $status_produk, $expproduk, $tgl_terima);
         return redirect('/produkjadi');
     }
+    //delete
+    public function delete_produk_jadi(Request $req){
+        $id_jadi = $req->input('idjadi_delete');
+        $user = new CendanaModel;
+        $delete_produkjadi = $user->delete_produkjadi($id_jadi);
+        return redirect('/produkjadi');
+    }
+
     //retur
     public function view_retur(){
         $user = new CendanaModel;
@@ -321,6 +335,12 @@ class CendanaController extends Controller
         $insert_pegawai = $user->insert_pegawai($nama_pegawai, $jobpegawai, $passpegawai);
         return redirect('/pegawai');
     }
+    public function delete_pegawai(Request $req){
+        $id_pegawai = $req->input('id_pegawai_delete');
+        $user = new CendanaModel;
+        $delete_pegawai = $user->delete_pegawai($id_pegawai);
+        return redirect('/pegawai');
+    }
 
     //CUSTOMER
     public function view_customer(){
@@ -379,11 +399,11 @@ class CendanaController extends Controller
     public function update_stock_produk_mentah(Request $req){
         $update_stock_produk_mentah = "";
         $user = new CendanaModel;
-        if($req->input('id_produk_mentah') == null && $req->input('qty') == null){
+        if($req->input('id_produk_mentah') != null && $req->input('qty') != null){
             $id_produk = $req->input('id_produk_mentah');
+            $split_id = explode(' - ', $id_produk);
             $qty = $req->input('qty');
-
-            $update_stock_produk_mentah = $user->update_stock_produk_mentah($id_produk, $qty);
+            $update_stock_produk_mentah = $user->update_stock_produk_mentah($split_id[0], $qty);
         }
         $produk_show = $user->data_produk_mentah();
 
@@ -396,7 +416,8 @@ class CendanaController extends Controller
                 $req->session()->flash('error', 'Update stock failed!');
             }
         }
-        return view('update_penyesuaianstok', compact(['produk_show']));
+        // return view('penyesuaianstok', compact(['produk_show']));
+        return redirect('/penyesuaistok');
     }
 
     public function update_stock_produk_jadi(Request $req){
@@ -404,9 +425,10 @@ class CendanaController extends Controller
         $user = new CendanaModel;
         if($req->input('id_produk_jadi') == null && $req->input('qty') == null){
             $id_produk = $req->input('id_produk_jadi');
+            $split_id = explode(' - ', $id_produk);
             $qty = $req->input('qty');
-
-            $update_stock_produk_jadi = $user->update_stock_produk_jadi($id_produk, $qty);
+            dd($split_id);
+            $update_stock_produk_jadi = $user->update_stock_produk_jadi($split_id[0], $qty);
         }
         $produk_show = $user->data_produk_jadi();
 
@@ -419,7 +441,8 @@ class CendanaController extends Controller
                 $req->session()->flash('error', 'Update stock failed!');
             }
         }
-        return view('update_penyesuaianstokjadi', compact(['produk_show']));
+        // return view('penyesuaistok', compact(['produk_show']));
+        return redirect('/penyesuaistok');
     }
 
     //Konversi
@@ -468,5 +491,5 @@ class CendanaController extends Controller
         $keluar = $user->data_keluar();
         return view('laporan_keluarproduk', compact(['keluar']));
     }
-   
+
 }

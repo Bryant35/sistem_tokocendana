@@ -9,7 +9,33 @@
 @include('navbar')
 <body>
     <div class="container">
-        <h1 class="fw-bold">Update Pegawai</h1>
+        <div class="d-flex justify-content-between mb-3 mt-2">
+            <h1 class="fw-bold">Update Pegawai</h1>
+            <button type="button" class="btn border-end border-bottom border-3 rounded fw-bold mt-2 shadow bg-body" style="background-color:green; color: red;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Delete
+            </button>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <form action="/deletepegawai" method="POST">
+                @csrf
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Hapus Pegawai ?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Yakin Menghapus Pegawai ?
+                            <input type="hidden" name="id_pegawai_delete" value="{{$data_pegawai[0]->PEGAWAI_ID}}">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
         <div class="row">
             <form action="/updatedatapegawai" method="POST">
                 @csrf

@@ -65,7 +65,7 @@ Route::get('/penyesuaistok', 'App\Http\Controllers\CendanaController@penyesuaian
 Route::get('/updatepenyesuaistok', 'App\Http\Controllers\CendanaController@tampilan_list_produk_mentah');
 Route::POST('/penyesuaianprodukmentah', 'App\Http\Controllers\CendanaController@update_stock_produk_mentah');
 Route::get('/updatepenyesuaistokjadi', 'App\Http\Controllers\CendanaController@tampilan_list_produk_jadi');
-
+Route::POST('/penyesuaianprodukjadi', 'App\Http\Controllers\CendanaController@update_stock_produk_jadi');
 
 //PEGAWAI
 Route::get('/pegawai', 'App\Http\Controllers\CendanaController@view_pegawai');
@@ -74,9 +74,6 @@ Route::get('/insertpegawai', 'App\Http\Controllers\CendanaController@view_insert
 Route::POST('/pegawaiinsert', 'App\Http\Controllers\CendanaController@data_insert_pegawai');
 Route::POST('/updatepegawai', 'App\Http\Controllers\CendanaController@view_update_pegawai');
 Route::post('/updatedatapegawai', 'App\Http\Controllers\CendanaController@update_pegawai');
-Route::get('/deletepegawai', function () {
-    return view('deletepegawai');
-});
 
 // Route::get('/transaksijual', function () {
 //     return view('transaksipenjualan');
@@ -114,9 +111,7 @@ Route::POST('/runupdatementah', 'App\Http\Controllers\CendanaController@update_p
 Route::get('/insertprodukmentah', 'App\Http\Controllers\CendanaController@view_insert_produk_mentah');
 Route::POST('/insertmentah', 'App\Http\Controllers\CendanaController@insert_produk_mentah');
 Route::POST('/viewdetailjadi', 'App\Http\Controllers\CendanaController@view_detail_produk_jadi');
-Route::get('/deleteprodukmentah', function () {
-    return view('deletementah');
-});
+Route::POST('/deletementah', 'App\Http\Controllers\CendanaController@delete_produk_mentah');
 
 Route::get('/laporankonversistok', 'App\Http\Controllers\CendanaController@laporan_konversi_stok');
 
@@ -142,7 +137,7 @@ Route::get('/deleteprodukjadi', function () {
 
 Route::POST('/updateprodukjadi', 'App\Http\Controllers\CendanaController@update_produk_jadi');
 Route::POST('/insertjadi', 'App\Http\Controllers\CendanaController@insert_produk_jadi');
-
+Route::POST('/deletejadi', 'App\Http\Controllers\CendanaController@delete_produk_jadi');
 Route::get('/customer', 'App\Http\Controllers\CendanaController@view_customer');
 Route::POST('/detail-customer', 'App\Http\Controllers\CendanaController@view_update_customer');
 
@@ -158,7 +153,8 @@ Route::POST('/deletecust', 'App\Http\Controllers\CendanaController@delete_custom
 // });
 
 
-
+//DELETE
+Route::POST('/deletepegawai', 'App\Http\Controllers\CendanaController@delete_pegawai');
 
 
 
