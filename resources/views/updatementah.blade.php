@@ -9,7 +9,33 @@
 <body>
     @include('navbar')
     <div class="container">
-        <h1 class="fw-bold">Update Produk Mentah</h1>
+        <div class="d-flex justify-content-between mb-3 mt-2">
+            <h1 class="fw-bold">Update Produk Mentah</h1>
+            <button type="button" class="btn border-end border-bottom border-3 rounded fw-bold mt-2 shadow bg-body" style="background-color:green; color: red;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Delete
+            </button>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <form action="/deletementah" method="POST">
+                @csrf
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Delete Produk Mentah</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Yakin Menghapus Produk Mentah {{$detail_produkmentah[0]->NAMA_PRODUK}} ?
+                            <input type="hidden" name="idmentah_delete" value="{{$detail_produkmentah[0]->MENTAH_ID}}">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
         <div class="row">
             <div class="col">
                 <div class="card">

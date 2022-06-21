@@ -10,6 +10,7 @@
 <body>
     <div class="container">
         <h1 class="fw-bold">Insert Pegawai</h1>
+        
         <div class="row mb-5">
             <form action="/pegawaiinsert" method="POST">
                 @csrf
@@ -44,7 +45,7 @@
                             <br>
                             <div class="row position-absolute bottom-0 start-50 translate-middle-x mb-4">
                                 <div class="col">
-                                    <a href="/pegawai"></a><div class="btn border-end border-bottom border-3 rounded fw-bold shadow bg-body" style="background-color:white; color: grey;">Cancel</div></a>
+                                    <a href="/pegawai"><div class="btn border-end border-bottom border-3 rounded fw-bold shadow bg-body" style="background-color:white; color: grey;">Cancel</div></a>
                                 </div>
                                 <div class="col">
                                     <input class="btn border-end border-bottom border-3 rounded fw-bold shadow bg-body" style="background-color:white; color: #1672EC;" value="Insert" type="submit">

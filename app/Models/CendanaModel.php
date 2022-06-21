@@ -262,6 +262,11 @@ class CendanaModel extends Model
         $res = DB::insert($cmd);
         return $res;
     }
+    public function delete_produkmentah($id_mentah){
+        $cmd = "UPDATE `PRODUK_MENTAH` SET `MENTAH_DELETE`='1' WHERE MENTAH_ID = '".$id_mentah."';";
+        $res = DB::update($cmd);
+        return $res;
+    }
 
     //produk jadi
     public function get_data_produkjadi(){
@@ -309,6 +314,12 @@ class CendanaModel extends Model
         }
         return null;
     }
+    public function delete_produkjadi($id_jadi){
+        $cmd = "UPDATE `PRODUK` SET `PRODUK_DELETE`='1' WHERE PRODUK_ID = '".$id_jadi."';";
+        $res = DB::update($cmd);
+        return $res;
+    }
+
     //insert produk jadi
     public function insert_produkjadi($namaproduk, $jenis_produk, $harga_produk, $jumlah, $status_produk, $expproduk, $tgl_terima){
         $cmd = "INSERT INTO `PRODUK`(`PRODUK_ID`, `NAMA_PRODUK`, `JENIS_PRODUK`, `HARGA_PRODUK`, `QUANTITY_PRODUK`, `STATUS_PRODUK`, `EXPIRED_PRODUK`, `TGL_TERIMA`) VALUES ('','".$namaproduk."','".$jenis_produk."',".$harga_produk.",".$jumlah.",'".$status_produk."',date('".$expproduk."') ,'".$tgl_terima."')";
@@ -344,8 +355,9 @@ class CendanaModel extends Model
     }
     public function update_pegawai($id_pegawai, $nama_pegawai, $jobpegawai, $passpegawai){
         $check = DB::select("SELECT * FROM PEGAWAI WHERE PEGAWAI_ID = '".$id_pegawai."' AND PEGAWAI_DELETE = 0 AND PASS_PEG = '".$passpegawai."';");
-        if(isset($res) && count($res) > 0){
+        if(isset($check) && count($check) > 0){
             $cmd = "UPDATE `PEGAWAI` SET `NAMA_PEGAWAI`='".$nama_pegawai."',`JOB_PEGAWAI`='".$jobpegawai."' WHERE PEGAWAI_ID = '".$id_pegawai."' AND `PASS_PEG`='".$passpegawai."';";
+
             $res = DB::update($cmd);
             return $res;
         }
@@ -353,7 +365,7 @@ class CendanaModel extends Model
     }
     public function update_passpegawai($id_pegawai, $nama_pegawai, $jobpegawai, $passpegawai, $passkonbarupegawai, $passbarupegawai){
         $check = DB::select("SELECT * FROM PEGAWAI WHERE PEGAWAI_ID = '".$id_pegawai."' AND PEGAWAI_DELETE = 0 AND PASS_PEG = '".$passpegawai."';");
-        if(isset($res) && count($res) > 0){
+        if(isset($check) && count($check) > 0){
             if($passkonbarupegawai == $passkonbarupegawai){
                 $cmd = "UPDATE `PEGAWAI` SET `NAMA_PEGAWAI`='".$nama_pegawai."',`JOB_PEGAWAI`='".$jobpegawai."',`PASS_PEG`='".$passbarupegawai."' WHERE PEGAWAI_ID = '".$id_pegawai."' AND `PASS_PEG`='".$passpegawai."';";
                 $res = DB::update($cmd);
@@ -374,6 +386,11 @@ class CendanaModel extends Model
             return $res;
         }
         return null;
+    }
+    public function delete_pegawai($id_pegawai){
+        $cmd = "UPDATE `PEGAWAI` SET `PEGAWAI_DELETE`=1 WHERE PEGAWAI_ID = '".$id_pegawai."';";
+        $res = DB::update($cmd);
+        return $res;
     }
 
     //CUSTOMER

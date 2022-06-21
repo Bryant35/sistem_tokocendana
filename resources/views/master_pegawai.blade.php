@@ -43,7 +43,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body" style="height: 180px; background-color: #EBEBEB;">
@@ -53,10 +52,4 @@
             </div>
         </div>
     </div>
-    <script>
-        // function myFunction() {
-        //     alert({{$message}});
-        // }
-    </script>
-</body>
 </html>
